@@ -1,0 +1,265 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs28\lang9\par
+\fs48                     DATA STRUCTURE\par
+\fs28                                           NAME : M . VAISHNAVI\par
+                                          COURSE CODE : CSA0390\par
+                                          DATE : 24/07/24\par
+                                          DAY : 01\par
+\par
+1.writing a recursive function to caluculate the factorial of a number .\par
+\fs22 #include <stdio.h>\par
+ int factorial(int n) \{\par
+    if (n == 0) \{\par
+        return 1;\par
+    \} else \{\par
+        return n * factorial(n - 1);\par
+    \}\par
+\}\par
+int main() \{\par
+    int number = 3;\par
+    int result = factorial(number);\par
+    printf("Factorial of %d = %d", number, result);\par
+    return 0;\par
+\}\par
+\ul\fs28 output\ulnone  :\fs22\par
+Factorial of 3 = 6\par
+\fs28 2 . write a c program to find duplicate elements in an array \fs22\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int arr[] = \{1, 2, 3, 4, 2, 7, 8, 8, 3\};\par
+    int size = sizeof(arr) / sizeof(arr[0]);\par
+ printf("Duplicate elements in the array are: ");\par
+    for (int i = 0; i < size; i++) \{\par
+        for (int j = i + 1; j < size; j++) \{\par
+            if (arr[i] == arr[j]) \{\par
+                printf("%d ", arr[j]);\par
+                break;\par
+            \}\par
+        \}\par
+    \}\par
+return 0;\par
+\}\par
+\ul\fs28 output\ulnone  \fs22 :\par
+Duplicate elements in the array are : 2 3 4\par
+\fs28 3 . write a c program to find max and min elements from in an array \par
+\fs22 #include <stdio.h>\par
+int main() \{\par
+    int arr[] = \{10, 5, 8, 20, 15\};\par
+    int n = sizeof(arr) / sizeof(arr[0]);\par
+    int max = arr[0];\par
+    int min = arr[0];\par
+    for (int i = 1; i < n; i++) \{\par
+        if (arr[i] > max) \{\par
+            max = arr[i];\par
+        \}\par
+        if (arr[i] < min) \{\par
+            min = arr[i];\par
+        \}\par
+    \}\par
+    printf("Maximum element in the array: %d\\n", max);\par
+    printf("Minimum element in the array: %d\\n", min);\par
+return 0;\par
+\}\par
+\ul\fs28 output \ulnone\fs22 : \par
+Maximum element in the array: 20\par
+Minimum element in the array: 5\par
+\fs28 4 . given a number n the task is to print the fibonacci series and the sum of the series using recursion .\par
+\fs22 #include <stdio.h>\par
+int fibonacci(int n) \{\par
+    if (n <= 1)\par
+        return n;\par
+    return fibonacci(n - 1) + fibonacci(n - 2);\par
+\}\par
+int main() \{\par
+    int n, i;\par
+    unsigned long long sum = 0;\par
+    printf("Enter the number of terms: ");\par
+    scanf("%d", &n);\par
+    printf("Fibonacci Series: ");\par
+    for (i = 0; i < n; i++) \{\par
+        printf("%d ", fibonacci(i));\par
+        sum += fibonacci(i);\par
+    \}\par
+    printf("\\nSum of Fibonacci Series: %llu", sum);\par
+   return 0;\par
+\}\par
+\ul\fs28 output\ulnone\fs22  : \par
+Enter the number of terms: 10\par
+Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 \par
+Sum of Fibonacci Series: 88\par
+\fs28 5 . you are given an array arr in increasing order. find the elment x from arr using binary. \par
+\fs22\par
+#include <stdio.h>\par
+int binarySearch(int arr[], int left, int right, int x) \{\par
+    while (left <= right) \{\par
+        int mid = left + (right - left) / 2;\par
+        if (arr[mid] == x)\par
+            return mid;\par
+        if (arr[mid] < x)\par
+            left = mid + 1;\par
+        else\par
+            right = mid - 1;\par
+    \}\par
+    return -1;\par
+\}\par
+int main() \{\par
+    int arr[] = \{2, 4, 6, 8, 10, 12, 14, 16\};\par
+    int n = sizeof(arr) / sizeof(arr[0]);\par
+    int x = 10;\par
+    int result = binarySearch(arr, 0, n - 1, x);\par
+    if (result == -1)\par
+        printf("Element not found\\n");\par
+    else\par
+        printf("Element found at index %d\\n", result);\par
+  return 0;\par
+\}\par
+\ul\fs28 output\ulnone\fs22  : \par
+Element found at index : 4 \par
+\fs28 6 . write a c program to implement following operations\fs24\par
+a)traverse\par
+b)search\par
+c)insert\par
+d)delete\par
+e)update\par
+\fs22 #include <stdio.h>\par
+#include <stdlib.h>\par
+struct Node \{\par
+    int data;\par
+    struct Node* next;\par
+\};\par
+void traverse(struct Node* head) \{\par
+    struct Node* temp = head;\par
+    while (temp != NULL) \{\par
+        printf("%d ", temp->data);\par
+        temp = temp->next;\par
+    \}\par
+\}\par
+int search(struct Node* head, int key) \{\par
+    struct Node* current = head;\par
+    while (current != NULL) \{\par
+        if (current->data == key) \{\par
+            return 1;\par
+        \}\par
+        current = current->next;\par
+    \}\par
+    return 0;\par
+\}\par
+void insert(struct Node** head_ref, int new_data) \{\par
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));\par
+    new_node->data = new_data;\par
+    new_node->next = (*head_ref);\par
+    (*head_ref) = new_node;\par
+\}\par
+void delete(struct Node** head_ref, int key) \{\par
+    struct Node* temp = *head_ref, *prev;\par
+    if (temp != NULL && temp->data == key) \{\par
+        *head_ref = temp->next;\par
+        free(temp);\par
+        return;\par
+    \}\par
+    while (temp != NULL && temp->data != key) \{\par
+        prev = temp;\par
+        temp = temp->next;\par
+    \}\par
+    if (temp == NULL) return;\par
+    prev->next = temp->next;\par
+    free(temp);\par
+\}\par
+void update(struct Node* head, int old_data, int new_data) \{\par
+    struct Node* temp = head;\par
+    while (temp != NULL) \{\par
+        if (temp->data == old_data) \{\par
+            temp->data = new_data;\par
+            return;\par
+        \}\par
+        temp = temp->next;\par
+    \}\par
+\}\par
+int main() \{\par
+    struct Node* head = NULL;\par
+    insert(&head, 1);\par
+    insert(&head, 2);\par
+    insert(&head, 3);\par
+    printf("Initial Linked List: ");\par
+    traverse(head);\par
+    printf("\\n");\par
+    int key = 2;\par
+    if (search(head, key)) \{\par
+        printf("%d found in the Linked List.\\n", key);\par
+    \} else \{\par
+        printf("%d not found in the Linked List.\\n", key);\par
+    \}\par
+    delete(&head, 2);\par
+    printf("Linked List after deleting 2: ");\par
+    traverse(head);\par
+    printf("\\n");\par
+    update(head, 1, 10);\par
+    printf("Linked List after updating 1 to 10: ");\par
+    traverse(head);\par
+    printf("\\n");\par
+   return 0;\par
+\}\par
+\ul\fs28 output \ulnone\fs22 : \par
+Initial Linked List: 3 2 1 \par
+2 found in the Linked List.\par
+Linked List after deleting 2: 3 1 \par
+Linked List after updating 1 to 10: 3 10 \par
+\fs28 7. write a c program of linear search.\par
+\fs22 #include <stdio.h>\par
+int linearSearch(int arr[], int n, int key) \{\par
+    for (int i = 0; i < n; i++) \{\par
+        if (arr[i] == key) \{\par
+            return i;\par
+        \}\par
+    \}\par
+    return -1;\par
+\}\par
+int main() \{\par
+    int arr[] = \{2, 4, 6, 8, 10\};\par
+    int n = sizeof(arr) / sizeof(arr[0]);\par
+    int key = 6;\par
+    int result = linearSearch(arr, n, key);\par
+    if (result == -1) \{\par
+        printf("Element not found\\n");\par
+    \} else \{\par
+        printf("Element found at index %d\\n", result);\par
+    \}\par
+    return 0;\par
+\}\par
+\ul\fs28 output \ulnone\fs22 : \par
+Element found at index : 2\par
+\fs28 8 . write a c program of binary search.\par
+\fs22 #include <stdio.h>\par
+int binarySearch(int arr[], int left, int right, int target) \{\par
+    while (left <= right) \{\par
+        int mid = left + (right - left) / 2;\par
+        if (arr[mid] == target) \{\par
+            return mid;\par
+        \}\par
+        if (arr[mid] < target) \{\par
+            left = mid + 1;\par
+        \} else \{\par
+            right = mid - 1;\par
+        \}\par
+    \}\par
+    return -1;\par
+\}\par
+int main() \{\par
+    int arr[] = \{2, 4, 6, 8, 10, 12, 14, 16, 18, 20\};\par
+    int n = sizeof(arr) / sizeof(arr[0]);\par
+    int target = 12;\par
+    int result = binarySearch(arr, 0, n - 1, target);\par
+    if (result == -1) \{\par
+        printf("Element not found\\n");\par
+    \} else \{\par
+        printf("Element found at index %d\\n", result);\par
+    \}\par
+   return 0;\par
+\}\par
+\ul\fs28 output \ulnone\fs22 : \par
+Element found at index :  5\par
+\par
+}
+ 
